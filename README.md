@@ -19,7 +19,7 @@ This repository focuses on the text-classification component of the study.
 Replace `<repository-url>` with the actual repository URL.
 
 ```shell
-git clone <repository-url>
+git clone https://github.com/mumu9899/QuakeSense-LLM.git
 cd QuakeSense-LLM
 ```
 
