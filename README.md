@@ -136,7 +136,7 @@ Across five leave-one-event-out tests, the macro-average F1-score ranged from 0.
 
 The study contains 64,731 valid annotated Weibo comments from 12 earthquakes.
 
-The annotated dataset is intended for public release upon publication of the related article. User-identifying information has been removed. Before public release, the data are available from the corresponding author upon reasonable request.
+The complete annotated dataset files are provided in the [`data/`](data/) folder of this repository, organized by earthquake event.
 
 ---
 
@@ -155,6 +155,7 @@ The annotated dataset is intended for public release upon publication of the rel
 - `model.py` — Model loading and inference.
 - `predict.py` — Single-text and batch prediction.
 - `pretrained/` — Model and tokenizer files.
+- `data/` — Annotated Weibo comment datasets organized by earthquake event.
 - `requirements.txt` — Python dependencies.
 - `sample_input.csv` — Example batch input.
 - `LICENSE` — Open-source license.
