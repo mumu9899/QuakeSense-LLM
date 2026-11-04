@@ -16,8 +16,6 @@ This repository focuses on the text-classification component of the study.
 
 ### 1. Clone the repository
 
-Replace `<repository-url>` with the actual repository URL.
-
 ```shell
 git clone https://github.com/mumu9899/QuakeSense-LLM.git
 cd QuakeSense-LLM
@@ -31,21 +29,15 @@ Python 3.10+ is recommended. A GPU is recommended for large language model infer
 pip install -r requirements.txt
 ```
 
-### 3. Prepare the model files
+### 3. Download the model files
 
-Place the released model files in the `pretrained/` directory.
+The released QuakeSense-LLM model weights and tokenizer files are available on Hugging Face:
 
-```text
-pretrained/
-├── adapter_config.json
-├── adapter_model.safetensors
-├── tokenizer.json
-├── tokenizer_config.json
-├── special_tokens_map.json
-└── label_mapping.json
-```
+[QuakeSense-LLM on Hugging Face](https://huggingface.co/mumu9899/QuakeSense-LLM)
 
-The model reported in the paper uses DeepSeek-7B-Base as the pretrained backbone, with LoRA applied to `q_proj`, `k_proj`, `v_proj`, and `o_proj`. If the released checkpoint contains only the LoRA adapter, the corresponding DeepSeek-7B-Base backbone is also required.
+Download the model files from the repository into a local directory named `final_merged_model`. Use this directory with `--model_dir` when running inference.
+
+The model reported in the paper uses DeepSeek-7B-Base with task-specific LoRA fine-tuning and a four-class classification head.
 
 ---
 
@@ -54,7 +46,7 @@ The model reported in the paper uses DeepSeek-7B-Base as the pretrained backbone
 ### Single-text prediction
 
 ```shell
-python predict.py --input "刚才床晃了一下，好像地震了"
+python predict.py --model_dir final_merged_model --input "刚才床晃了一下，好像地震了" 
 ```
 
 Example output:
@@ -69,7 +61,7 @@ Confidence: 0.8734
 ### Batch prediction
 
 ```shell
-python predict.py --input sample_input.csv --output predictions.csv
+python predict.py --model_dir final_merged_model --input sample_input.csv --output predictions.csv
 ```
 
 The input CSV should contain a column named `text`.
@@ -105,6 +97,8 @@ The annotation scheme considers six types of cues: bodily sensation, object moti
 ---
 
 ## Model
+
+The released model weights are hosted on [Hugging Face](https://huggingface.co/mumu9899/QuakeSense-LLM).
 
 | Item | Value |
 |---|---|
@@ -154,7 +148,6 @@ The complete annotated dataset files are provided in the [`data/`](data/) folder
 
 - `model.py` — Model loading and inference.
 - `predict.py` — Single-text and batch prediction.
-- `pretrained/` — Model and tokenizer files.
 - `data/` — Annotated Weibo comment datasets organized by earthquake event.
 - `requirements.txt` — Python dependencies.
 - `sample_input.csv` — Example batch input.
